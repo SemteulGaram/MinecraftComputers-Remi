@@ -1,0 +1,31 @@
+local comp = require("component")
+local inet = nil;
+
+function setup()
+  if not inet.isAvailable() then
+    print("Internet component not available. Please insert internet card.")
+    return 1
+  end
+  inet = comp.internet
+  if not inet.isHttpEnabled() then
+    print("This server didn't allow http access. Please download script manually(via pastebin or wget).")
+    return 2
+  end
+  return 0
+end
+
+function install()
+  local req = inet.request("https://raw.githubusercontent.com/SemteulGaram/OpenComputers-Remi/master/src/main/remi-main.lua")
+  local file = io.open("autorun.lua", "w")
+  local data = req.read()
+  while data do
+    file:write(data)
+    data = req.read()
+  end
+  file:close()
+  return true
+end
+
+if setup()>0 then
+  install()
+end

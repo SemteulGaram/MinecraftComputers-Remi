@@ -36,12 +36,14 @@ function fileExists(file)
 end
 
 function main()
-  if (fileExists("config.json"))
+  if not fileExists("config.json") then
+    
+  end
   share.tListener=thread.create(tListener)
 end
 
 function tListener()
-
+  log(1, "")
 end
 
 setup()
