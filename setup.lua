@@ -2,7 +2,7 @@ local comp = require("component")
 local inet = nil;
 
 function setup()
-  if not inet.isAvailable() then
+  if not comp.isAvailable("internet") then
     print("Internet component not available. Please insert internet card.")
     return 1
   end
