@@ -23,7 +23,7 @@ local function install()
   xpcall(function()os.execute('mkdir src')end, function(err)end)
 
   local req=inet.request(GITTRANSURL)
-  local file=io.open("src/gitTrans.lua", "w")
+  local file=io.open("src/gitTrans", "w")
   local data=req.read()
   while data do
     file:write(data)
