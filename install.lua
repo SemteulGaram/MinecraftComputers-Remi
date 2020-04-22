@@ -48,7 +48,7 @@ if code~=0 then
 end
 
 print('gitTrans force pulling...')
-local gitTrans=require './src/gitTrans.lua'
+local gitTrans=require 'src/gitTrans.lua'
 code=gitTrans.forcePull()
 if code~=0 then
   print('gitTrans.forcePull() process terminated with error code: '..code)
