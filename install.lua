@@ -23,7 +23,7 @@ local function install()
   xpcall(function()os.execute('mkdir src')end, function(err)end)
 
   local req=inet.request(GITTRANSURL)
-  local file=io.open("src/gitTrans", "w")
+  local file=io.open("src/gitTrans.lua", "w")
   local data=req.read()
   while data do
     file:write(data)
@@ -48,7 +48,7 @@ if code~=0 then
 end
 
 print('gitTrans force pulling...')
-local gitTrans=require 'src/gitTrans.lua'
+local gitTrans=require 'src/gitTrans'
 code=gitTrans.forcePull()
 if code~=0 then
   print('gitTrans.forcePull() process terminated with error code: '..code)
