@@ -30,7 +30,7 @@ local function install()
     data=req.read()
   end
   file:close()
-  return true
+  return 0
 end
 
 print('Remi check...')
@@ -52,4 +52,6 @@ local gitTrans=require './src/gitTrans.lua'
 code=gitTrans.forcePull()
 if code~=0 then
   print('gitTrans.forcePull() process terminated with error code: '..code)
+  return
 end
+print('Remi installation SUCCESS')
