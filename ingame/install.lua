@@ -3,6 +3,7 @@
 local GITTRANSURL='https://raw.githubusercontent.com/SemteulGaram/OpenComputers-Remi/master/src/gitTrans.lua'
 
 local comp = require 'component'
+local fs = require 'filesystem'
 local inet = nil
 
 local function check()
@@ -20,14 +21,16 @@ end
 
 local function install()
 	--Ensure Dir
-  xpcall(function()os.execute('mkdir src')end, function(err)end)
+  fs.makeDirectory('src')
 
   local req=inet.request(GITTRANSURL)
   local file=io.open("src/gitTrans.lua", "w")
-  local data=req.read()
+  local byteCount = 1024
+  local data=req.read(byteCount)
   while data do
     file:write(data)
-    data=req.read()
+    file:flush()
+    data=req.read(byteCount)
   end
   file:close()
   return 0
